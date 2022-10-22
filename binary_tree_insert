@@ -1,0 +1,30 @@
+def tree_insert(head,name,append_name,l_or_r,replace=False):
+    if head.name == name: 
+       
+        if replace:      
+            if l_or_r == 'l':
+                head.left.name = append_name
+            elif l_or_r == 'r':
+                head.right.name = append_name
+        else:
+            if l_or_r == 'l':
+                head.left = Node(append_name)
+            elif l_or_r == 'r':
+                head.right = Node(append_name)
+        return 'target_founded' #返回值没有什么用处，但可以用来debug
+        
+   
+    if head.left:
+        if head.right:
+            return (tree_append(head.left,name,append_name,l_or_r),tree_append(head.right,name,append_name,l_or_r))
+            
+
+        else:
+            return tree_append(head.left,name,append_name,l_or_r)
+           
+
+    elif head.right:
+        return tree_append(head.right,name,append_name,l_or_r)
+
+    else:
+        return 'reach_leave' 
